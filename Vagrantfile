@@ -26,7 +26,7 @@ Vagrant.configure('2') do |config |
    config.vm.define 'tl-server1' do |s|
     s.vm.provider :openstack do |os, override|
       os.server_name = 'tl-gocd-vm-1'
-      os.flavor = 'f2.desktop.medium'
+      os.flavor = ENV['OS_FLAVOR_NAME']
       override.vm.synced_folder '.', '/vagrant', disabled: true
     end
   end
@@ -34,7 +34,7 @@ Vagrant.configure('2') do |config |
     s.vm.provision "docker"
     s.vm.provider :openstack do |os, override|
       os.server_name = 'tl-gocd-vm-2'
-      os.flavor = 'f2.desktop.medium'
+      os.flavor = ENV['OS_FLAVOR']
       override.vm.synced_folder '.', '/vagrant', disabled: true
     end
   end
